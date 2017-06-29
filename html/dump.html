@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.bigdiv {
+				width: 300px;
+				height: 300px;
+				border: 1px solid #DDDDDD;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			.btn {
+				z-index: 10;
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				background: blue;
+				color: #FFFFFF;
+				text-align: center;
+				line-height: 60px;
+				border: none;
+				outline: none;
+				cursor: pointer;
+			}
+			@keyframes shape-change {
+        0%, 100% {
+            border-radius: 50%;
+            background: red;
+        }
+        50% {
+            border-radius: 0;
+            background: blue;
+        }
+    }
+    .dump{
+    	position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            transition: all 1s cubic-bezier(.22,-0.86,.97,.58);
+    }
+    .inner{	
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: red;
+                transition: all 1s linear;
+			}
+    @keyframes moveball-in {
+        0% {
+            transform: translate3d(100px,-300px,0);
+        }
+        50% {
+            transform: translate3d(50px,-200px,0);
+        }
+        100% {
+            transform: translate3d(0,0,0);
+        }
+    }
+    @keyframes moveball-out {
+        0% {
+            transform: translate3d(0,0,0);
+        }
+        50% {
+            transform: translate3d(50px,-100px,0);
+        }
+        100% {
+            transform: translate3d(100px,-300px,0);
+        }
+    }
+			.dump-enter-active{
+				opacity: 1;
+                animation: moveball-in 1s;
+			}
+			.dump-enter-active .inner{
+				 animation: shape-change 1s;
+			}
+			.dump-leave-active,.dump-enter{
+				 opacity: 0.8;
+                animation: moveball-out 1s;
+			}
+               
+               .dump-leave-active .inner,.dump-enter .inner{
+               	 animation: shape-change 1s;
+               }
+                   
+		</style>
+	</head>
+
+	<body>
+		<div class="bigdiv">
+			<button class="btn" @click="meauShow">{{text}}</button>
+			<transition name="dump">
+				<div class="dump" v-show="show">
+<div class="inner"></div>
+				</div>
+			</transition>
+		</div>
+	</body>
+
+</html>
+<script src="../js/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+	new Vue({
+		el: ".bigdiv",
+		data: {
+			show: false
+		},
+		computed: {
+			text() {
+				return this.show ? '收' : '开';
+			}
+		},
+		mounted: function() {
+
+		},
+		methods: {
+			meauShow: function() {
+				this.show = !this.show;
+			}
+		}
+
+	})
+</script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.bigdiv{
+			width:300px;
+			height: 300px;
+			border: 1px solid #DDDDDD; 	
+			margin: 0 auto;
+			position: relative;
+			}
+			.btn{
+				z-index: 10;
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				background: blue;
+				color: #FFFFFF;
+				text-align: center;
+			    line-height: 60px;
+			    border: none; 
+			    outline: none; 
+			    cursor: pointer;
+			}
+			.meau{
+				position: absolute; 
+				bottom:10px; 
+				right: 10px; 
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				transition: all .7s ease-in;
+			}
+			.ball-enter-active .inner {
+				 transform: translate3d(0, 0, 0);
+				 transition-timing-function: cubic-bezier(0, .57, .44, 1.97);
+			}
+			
+			.ball-enter-active .inner-1 {
+				transition-delay: .1s;
+			}
+			
+			.ball-enter-active .inner-2 {
+				transition-delay: .2s;
+			}
+			
+			.ball-enter-active .inner-3 {
+				transition-delay: .3s;
+			}
+			
+			.ball-enter .inner-1,.ball-leave-active .inner-1 {
+				transform: translate3d(0, 60px, 0); transition-delay: .3s;
+			}
+			
+			.ball-enter .inner-2,.ball-leave-active .inner-2 {
+				transform: translate3d(40px, 40px, 0); transition-delay: .2s;
+			}
+			
+			.ball-enter .inner-3,.ball-leave-active .inner-3{
+				transform: translate3d(60px, 0, 0); transition-delay: .1s;
+			}
+			
+
+			.inner {
+				 display: inline-block; position: absolute; width: 30px;
+				 height: 30px ;line-height: 30px; 
+				 border-radius: 50%; background: red; text-align: center;
+				 color: #fff; transition: all .4s;
+			}
+			
+			.inner-1 {
+				top: -50px; left: 10px;
+			}
+			
+			.inner-2 {
+				left: -30px;top: -30px;
+			}
+			
+			.inner-3 {
+				left: -50px; top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bigdiv"> 
+			<button class="btn" @click="meauShow">{{text}}</button>
+			<transition name="ball">
+				<div class="meau" v-show="show">
+				<div class="inner inner-1">1</div>
+				<div class="inner inner-2">2</div>
+				<div class="inner inner-3">3</div>
+				</div>
+				
+			</transition>
+		</div>
+	</body>
+</html>
+<script src="../js/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+	new Vue({
+		el:".bigdiv",
+		data:{
+			show:false
+		},
+		computed:{
+			text(){
+				return this.show? '收' : '开';
+			}
+		},
+		mounted:function(){
+			
+		},
+		methods: {
+         meauShow:function(){
+            this.show =!this.show;
+         }
+		}
+		
+	})
+</script>

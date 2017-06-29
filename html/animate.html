@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.wrapper {
+				width: 400px;
+				height: 400px;
+				margin: 30px auto;
+				background: pink;
+			}
+			.btn{
+				margin: 0 auto;
+				width: 60px;
+				height: 30px;
+				background: #C4E3F3;
+				color: #666;
+				text-align: center;
+				line-height: 30px;
+				cursor: pointer;
+			}
+			.item{
+				position: relative;
+				top:0;
+				left: 0;
+				width: 100px;
+				height: 100px;
+				background: gray;
+				color: #fff;
+				margin:  10px auto;
+			
+			}
+			.infor-enter-active{
+					transition: all 0.5s;
+				transform: translate(0,1) scale(1) rotate(00deg);
+				
+			}
+			.infor-enter,.infor-leave-active{
+					transition: all 0.5s;
+				opacity: 0;
+				transform: translate(0,100%) scale(1.2) rotate(360deg);
+			}
+			
+		</style>
+
+	</head>
+
+	<body>
+		<div class="wrapper" id="app" ref="self1">
+			<div class="btn" @click="show=!show">
+				点我哦
+			</div>
+			<transition name="infor">
+			<div class="animate" v-show="show" >
+				<div class="item">
+					咿呀喂
+				</div>
+			</div>
+			</transition>
+		</div>
+	</body>
+
+</html>
+<script src="../js/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+	new Vue({
+		el:"#app",
+		data:{
+			show:false
+		},
+		mounted:function(){
+//			this.$nextTick(function(){
+//				document.addEventListener('click',function(e){
+//					if(!!this.$refs.self1.contains(e.target)){
+//						return;
+//						this.show=!show;
+//					}
+//				})
+//			})
+		},
+		methods:{
+			
+		}
+	})
+</script>
