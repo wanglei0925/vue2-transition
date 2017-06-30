@@ -40,7 +40,7 @@
         }
     }
     .dump{
-    	position: absolute;
+    	    position: absolute;
             bottom: 20px;
             left: 20px;
             width: 50px;
@@ -57,10 +57,10 @@
 			}
     @keyframes moveball-in {
         0% {
-            transform: translate3d(100px,-300px,0);
+            transform: translate3d(230px,-100px,0);
         }
         50% {
-            transform: translate3d(50px,-200px,0);
+            transform: translate3d(150px,-150px,0);
         }
         100% {
             transform: translate3d(0,0,0);
@@ -71,25 +71,25 @@
             transform: translate3d(0,0,0);
         }
         50% {
-            transform: translate3d(50px,-100px,0);
+            transform: translate3d(150px,-150px,0);
         }
         100% {
-            transform: translate3d(100px,-300px,0);
+            transform: translate3d(230px,-100px,0);
         }
     }
-			.dump-enter-active{
+			.bal-enter-active{
 				opacity: 1;
                 animation: moveball-in 1s;
 			}
-			.dump-enter-active .inner{
+			.bal-enter-active .inner{
 				 animation: shape-change 1s;
 			}
-			.dump-leave-active,.dump-enter{
+			.bal-enter,.bal-leave-active{
 				 opacity: 0.8;
-                animation: moveball-out 1s;
+                 animation: moveball-out 1s;
 			}
                
-               .dump-leave-active .inner,.dump-enter .inner{
+               .bal-enter .inner,.bal-leave-active .inner{
                	 animation: shape-change 1s;
                }
                    
@@ -99,7 +99,7 @@
 	<body>
 		<div class="bigdiv">
 			<button class="btn" @click="meauShow">{{text}}</button>
-			<transition name="dump">
+			<transition name="bal" type="animation">
 				<div class="dump" v-show="show">
 <div class="inner"></div>
 				</div>
